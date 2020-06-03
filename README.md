@@ -1,2 +1,2 @@
 # Feasibility of reconstructing the basin-scale sea surface partial pressure of carbon dioxide from sparse in situ observations over the South China Sea
-Code, data, and graphs for pCO2 reconstruction work
+This repo contains replication codes for graphs and other supplementary documentation for Wang et al. Some other information about this project: data sets availability, copyright information, credits, and license.
