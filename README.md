@@ -11,3 +11,4 @@ Underway sea surface pCO2 data from 35 cruises ranging from 2000-2017 were compi
 
 ## Contents for R codes
 - The code `SummerRS.R` replicates Figure 4.
+- The code `ModeNumber.R` replicates Figure 5.
