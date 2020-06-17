@@ -16,3 +16,4 @@ Underway sea surface pCO2 data from 35 cruises ranging from 2000-2017 were compi
 - The code `SummerRSEOFs.R` replicates Figure 6(a)(b)(c).
 - The code `RS_PCs.R` replicates Figure 6(d).
 - The code `Reconstrcuted_pCO2.R` replicates the reconstruction implementation and Figure 7 mentioned in the paper.
+- The code `Reconstructed_TS.R` replicates Figure 8.
