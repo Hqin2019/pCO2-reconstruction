@@ -147,12 +147,4 @@ ani.replay()
 
 saveHTML(ani.replay(), img.name = "pCO2Summer_RS_animation")
 
-### Create mp4 movie
-imgs <- list.files(path="images",pattern="pCO2Summer_RS.*\\.png")
 
-saveVideo({
-  for(img in imgs){
-    im <- magick::image_read(img)
-    plot(as.raster(im))
-  }
-})
