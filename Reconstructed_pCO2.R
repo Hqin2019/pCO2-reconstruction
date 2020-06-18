@@ -303,13 +303,3 @@ ani.replay()
 #Show the animation on an HTML page
 saveHTML(ani.replay(), img.name = "pCO2SummerRecon_animation")
 
-#Create mp4 movie
-
-imgs <- list.files(path="images",pattern="pCO2.*\\.png")
-
-saveVideo({
-  for(img in imgs){
-    im <- magick::image_read(img)
-    plot(as.raster(im))
-  }  
-})
