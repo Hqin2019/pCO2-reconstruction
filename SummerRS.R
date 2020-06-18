@@ -9,31 +9,9 @@ library(scales)
 
 # Summer pCO2 data analysis for remote sensing data 2000-2014
 
-## Read remote sensing data from 2000 to 2014: Summer
+## load remote sensing data from 2000 to 2014: Summer
 
-t1 = 2000
-t2 = 2014
-ngrid = 1040 #number of grid boxes 
-ntime = t2-(t1-1) #15 years
-rsname=1: ntime
-for (i in 1: ntime){
-  rsname[i] = paste("pCO2_rs_summer", 1999+i, ".txt", sep="")
-}
-
-### Generate a matrix as the data holder: 1040X15 for (i in 1:ntime)
-
-data_rs = matrix(0, nrow=ngrid, ncol=ntime)
-for (i in 1:ntime){
-  dat = read.table(rsname[i], header=TRUE)
-  data_rs[,i] = dat[,3]
-}
-dim(data_rs)
-#[1] 1040   15
-data_rs[1:2,1:4] #This is the remote sensing pCO2 data from 2000 to 2014
-#[,1]   [,2]   [,3]   [,4]
-#[1,] 408.86 419.31 420.29 421.91
-#[2,] 411.80 418.42 419.97 421.91
-
+load(file="data/data_rs.RData")
 
 ## Data Pre-processing.
 
