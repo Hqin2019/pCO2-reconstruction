@@ -11,20 +11,12 @@ library(scales)
 
 ## load remote sensing data from 2000 to 2014: Summer
 
-load(file="data/data_rs.RData")
+load(file="data/RSdata.RData")
 
 ## Data Pre-processing.
 
 ### Remove the available values at the same observation point if there is NaN  
 
-t1 = 2000
-t2 = 2014
-ngrid = 1040 #number of grid boxes 
-ntime = t2-(t1-1) #15 years
-rsname=1: ntime
-for (i in 1: ntime){
-  rsname[i] = paste("pCO2_rs_summer", 1999+i, ".txt", sep="")
-}
 
 for (i in 1:ntime) {
   n = which(data_rs[ ,i] == "NaN")
@@ -87,6 +79,12 @@ sd_rs=rowSds(data_rs,na.rm=TRUE)
 ## Summer RS data pCO2 animation by 15 frames from 2000 to 2014
 
 labels <- c("(a)","(b)","(c)","(d)","(e)","(f)","(g)","(h)","(i)","(j)","(k)","(l)","(m)","(n)","(o)")
+
+t1 = 2000
+t2 = 2014
+ngrid = 1040 #number of grid boxes 
+ntime = t2-(t1-1) #15 years
+
 years_rs <- seq(t1, t2, length=ntime)
 
 ### set up an empty frame, then add points one by one
