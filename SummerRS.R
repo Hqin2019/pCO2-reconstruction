@@ -13,54 +13,7 @@ library(scales)
 
 load(file="data/RSdata.RData")
 
-## Data Pre-processing.
-
-### Remove the available values at the same observation point if there is NaN  
-
-
-for (i in 1:ntime) {
-  n = which(data_rs[ ,i] == "NaN")
-  data_rs[n,] <- NA
-}
-
-### Remove NA and obtain data with only values
-
-mar1 = is.na(data_rs[,3]) #This is from one of the RS data
-length(mar1)
-#[1] 1040  the number of True and False entries
-
-mar2 = which(mar1 == TRUE) #renders which positions with NaN
-length(mar2)
-#[1] 143  the number of NaN rows
-
-mar3 = which(mar1 == FALSE) #renders which positions with values
-length(mar3) 
-#[1] 897  the number of boxes with values
-#897 + 143 = 1040  = 40X26 grid boxes
-
-da0014 = na.omit(data_rs)#remove NaN and leave only values in the matrix da0014
-dim(da0014)
-#[1] 897   15  # 897 rows 
-#897 + 143 = 1040 rows total = 40X26
-
-### Lat and Lon of the grid
-
-data_rs_1=read.table(rsname[1], header=TRUE)
-
-latlon=data_rs_1[,1:2]
-dim(latlon)
-#[1] 1040    2
-
-latlon_val=latlon[mar3,]
-dim(latlon_val)
-#[1] 897   2  #latlon for 897 value boxes
-
-latlonnan=latlon[mar2,]
-dim(latlonnan)
-#[1] 143   2 #latlon for 143 NaN boxes
-
-RSdata = cbind(latlon, data_rs)
-write.csv(RSdata,file="~/RSdata.csv") #write data in .csv
+## Climatology of Remote Sensing Data
 clim_rs=rowMeans(data_rs,na.rm=TRUE)
 
 ### Plot climatology with NaN
