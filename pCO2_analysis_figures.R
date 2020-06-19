@@ -4,7 +4,6 @@
 # Codes for figures
 # 2020-06
  
-#setwd()
 
 # install.packages() and load the package
 library(matrixStats)
@@ -16,98 +15,31 @@ library(readxl)
 library(scales)
 
 
-# Summer pCO2 data analysis for remote sensing data 2000-2014
+## load remote sensing and observed data.
+load(file="data/RSdata.RData")
+load(file="data/OBdata.RData")
 
-## Read remote sensing data from 2000 to 2014: Summer
+## load Summer sea surface pCO2 at Station HOT
+load(file="data/reconsmr.RData")
 
+##load some middle values data to help run all source at once
+load(file="data/UNaN.RData")
+
+# Summer pCO2 data analysis for remote sensing data 2000-2014.
 t1 = 2000
 t2 = 2014
 ngrid = 1040 #number of grid boxes 
 ntime = t2-(t1-1) #15 years
-rsname=1: ntime
-for (i in 1: ntime){
-  rsname[i] = paste("pCO2_rs_summer", 1999+i, ".txt", sep="")
-}
-
-### Generate a matrix as the data holder: 1040X15 for (i in 1:ntime)
-
-data_rs = matrix(0, nrow=ngrid, ncol=ntime)
-for (i in 1:ntime){
-  dat = read.table(rsname[i], header=TRUE)
-  data_rs[,i] = dat[,3]
-}
-dim(data_rs)
-#[1] 1040   15
-data_rs[1:2,1:4] #This is the remote sensing pCO2 data from 2000 to 2014
-#[,1]   [,2]   [,3]   [,4]
-#[1,] 408.86 419.31 420.29 421.91
-#[2,] 411.80 418.42 419.97 421.91
-
-
-## Data Pre-processing.
-
-### Remove the available values at the same observation point if there is NaN  
-
-for (i in 1:ntime) {
-  n = which(data_rs[ ,i] == "NaN")
-  data_rs[n,] <- NA
-}
-
-### Remove NA and obtain data with only values
-
-mar1 = is.na(data_rs[,3]) #This is from one of the RS data
-length(mar1)
-#[1] 1040  the number of True and False entries
-
-mar2 = which(mar1 == TRUE) #renders which positions with NaN
-length(mar2)
-#[1] 143  the number of NaN rows
-
-mar3 = which(mar1 == FALSE) #renders which positions with values
-length(mar3) 
-#[1] 897  the number of boxes with values
-#897 + 143 = 1040  = 40X26 grid boxes
-
-da0014 = na.omit(data_rs)#remove NaN and leave only values in the matrix da0014
-dim(da0014)
-#[1] 897   15  # 897 rows 
-#897 + 143 = 1040 rows total = 40X26
-
-### Lat and Lon of the grid
-
-data_rs_1=read.table(rsname[1], header=TRUE)
-
-latlon=data_rs_1[,1:2]
-dim(latlon)
-#[1] 1040    2
-
-latlon_val=latlon[mar3,]
-dim(latlon_val)
-#[1] 897   2  #latlon for 897 value boxes
-
-latlonnan=latlon[mar2,]
-dim(latlonnan)
-#[1] 143   2 #latlon for 143 NaN boxes
-
-RSdata = cbind(latlon, data_rs)
-write.csv(RSdata,file="~/RSdata.csv") #write data in .csv
-
-
-## Climatology of Remote Sensing Data
-
-clim_rs=rowMeans(data_rs,na.rm=TRUE)
-
-### Plot climatology with NaN
-
 Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
 Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
 
-par(mfrow=c(1,1))
-plot(clim_rs, type="l")
-
+## Climatology of Remote Sensing Data
+clim_rs=rowMeans(data_rs,na.rm=TRUE)
 summary(clim_rs, na.rm=TRUE)
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 #359.9   413.1   416.1   415.6   419.2   457.8     143 
+par(mfrow=c(1,1))
+plot(clim_rs, type="l")
 
 mapmat=matrix(clim_rs,nrow=26)
 mapmat=pmax(pmin(mapmat,480),220)
@@ -131,16 +63,14 @@ filled.contour(Lon, Lat, mapmat, color.palette=rgb.palette, levels=int,
 
 
 ## Standard Deviation of Remote Sensing Data
-
 sd_rs=rowSds(data_rs,na.rm=TRUE)
-
-### Plot standard deviation of remote sensing data with NaN
-
-plot(sd_rs, type="l")
-
 summary(sd_rs, na.rm=TRUE)
 #Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 #1.096   4.297   5.464   5.931   7.088  30.197     143 
+
+### Plot standard deviation of remote sensing data with NaN
+plot(sd_rs, type="l")
+
 
 mapmat=matrix(sd_rs,nrow=26)
 mapmat=pmax(pmin(mapmat,12),2)
@@ -164,7 +94,6 @@ filled.contour(Lon, Lat, mapmat, color.palette = rgb.palette, levels=int,
 
 
 ## Figure 4. Remote sensing derived sea surface pCO2 in summer over the period of 2000-2017.
-
 ## Summer RS data pCO2 animation by 15 frames from 2000 to 2014
 
 labels <- c("(a)","(b)","(c)","(d)","(e)","(f)","(g)","(h)","(i)","(j)","(k)","(l)","(m)","(n)","(o)")
@@ -199,7 +128,6 @@ for(i in 1:ntime) {
 }
 
 ### Now we can replay it, with an appropriate pause between frames:
-
 ### Smaller interval means faster animation. Default: interval=1
 
 oopts = ani.options(interval = 0.5, 
@@ -214,16 +142,6 @@ ani.replay()
 ### Show the animation on an HTML page
 
 saveHTML(ani.replay(), img.name = "pCO2Summer_RS_animation")
-
-### Create mp4 movie
-imgs <- list.files(path="images",pattern="pCO2Summer_RS.*\\.png")
-
-saveVideo({
-  for(img in imgs){
-    im <- magick::image_read(img)
-    plot(as.raster(im))
-  }
-})
 
 
 ## Compute EOFs: The EOF patterns show important spatial patterns of pCO2
@@ -248,15 +166,6 @@ svd00=svd(clim_rs_std_val) #SVD for the matrix w/o NaN
 u00=svd00$u
 v00=svd00$v
 d00=svd00$d
-
-UNaN=matrix(0,nrow=1040, ncol=ntime)
-UNaN[mar2,]=NaN #mar2 is the NaN rows
-
-for(i in 1:897){
-  for (j in 1: ntime ){
-    UNaN[mar3[i],j] = u00[i,j] #mar3 is the value rows
-    }
-}
 
 
 ## Figure 5. Variances and the cumulative variances based on the 2000-2014 summer remote sensing pCO2 data
@@ -379,7 +288,7 @@ legend(2010,0.75, col=c("black","red","blue"),lty=c(1,3,5),lwd=2.0,
        bty="n",text.font=2,cex=1.2, text.col=c("black","red","blue"))
 
 
-##  Write the EOF data with header and in .csv
+##  Write the EOF data with header.
 
 eofnames=1:ntime
 
@@ -392,52 +301,14 @@ colnames(EOFs) <- eofnames
 
 
 
-# Summer pCO2 data analysis for insitu data 2000-2017
-
-## Read observed data from 2000 to 2014: Summer
-
+# Summer pCO2 data analysis for insitu data 2000-2017.
 ### Gridding by the SOG method
 
-### Step 1: Make a list of file names for the summer obs data files
-
-obsnames=list.files(path = "." , pattern = "pCO2_variance_summer" )
-length(obsnames)
-#[1] 13 The Summer has 13 files
-
-### Step 2: Read the summer obs data into a single file
-
 t1=1
-t2=length(obsnames)
+t2=13
 ngrid=1040
 
-#Generate a matrix as the data holder: 1040X13 for (i in 1:ntime)
-data_obs=matrix(0, nrow=ngrid, ncol=t2)
-
-for (i in t1:t2){
-  dat=read.table(obsnames[i], header=TRUE)
-  data_obs[,i] =dat[,8]
-}
-
-dim(data_obs)
-#[1] 1040   13
-
-
-## Outlier Detection 
-
-data_obs1=matrix(NA, nrow=ngrid, ncol=t2)
-min_obs=c()
-
-for (i in t1:t2){
-  sd_obs <- sd(data_obs, na.rm = TRUE)
-  min_obs[i] <- mean(data_obs[,i], na.rm = TRUE) - 3*sd_obs 
-  data_obs1[which(data_obs[,i] > min_obs[i]), i ] <- data_obs[which(data_obs[,i] > min_obs[i]),i]
-}
-
-obslatlon=cbind(latlon,data_obs1)
-
-
 ## Figure 3. In situ observation pCO2 data in the SCS in summer of 2000-2017.
-
 years_obs = c(2000,2001,2004:2009,2012,2014:2017)
 
 ## set up an empty frame, then add points one by one
@@ -479,19 +350,8 @@ ani.replay()
 ## Show the animation on an HTML page
 saveHTML(ani.replay(), img.name = "pCO2SummerObserved")
 
-#Create mp4 movie
-imgs <- list.files(path="images",pattern="pCO2SummerObserved.*\\.png")
-
-saveVideo({
-  for(img in imgs){
-    im <- magick::image_read(img)
-    plot(as.raster(im))
-  }  
-})
-
 
 # Reconstruction
-
 ## Compute the standardized anomalies of the observed data with RS climatology and standard deviation
 
 data_obs_anom = (data_obs1 - clim_rs) / sd_rs
@@ -569,7 +429,7 @@ for(i in 2:896){
   }
 }
 
-
+latlon_val=latlon[mar3,]
 reconlatlon_smr=cbind(latlon_val,reconfield_smr)
 
 
@@ -620,16 +480,6 @@ ani.replay()
 #Show the animation on an HTML page
 saveHTML(ani.replay(), img.name = "pCO2SummerRecon_animation")
 
-#Create mp4 movie
-
-imgs <- list.files(path="images",pattern="pCO2.*\\.png")
-
-saveVideo({
-  for(img in imgs){
-    im <- magick::image_read(img)
-    plot(as.raster(im))
-  }  
-})
 
 # Figure 8. plot the results: space-time averages
 
@@ -668,8 +518,6 @@ summary(model_spatial) # Model for Figure 8(a)
 
 ### Summer sea surface pCO2 at Station HOT .
 
-### read data
-HOT_surface_CO2_cal <- read_excel("HOT_surface_CO2_cal.xlsx", sheet = "Summer")
 x <- as.Date(HOT_surface_CO2_cal$date[HOT_surface_CO2_cal$`pCO2_insitu(uatm)`>0 & HOT_surface_CO2_cal$date > "2000-01-01"])
 y <- HOT_surface_CO2_cal$`pCO2_insitu(uatm)`[HOT_surface_CO2_cal$`pCO2_insitu(uatm)`>0 & HOT_surface_CO2_cal$date > "2000-01-01"]
 

@@ -8,8 +8,7 @@ library(readxl)
 library(scales)
 
 
-## load data.
-load(file="data/RSdata.RData")
+## load observed data. 
 load(file="data/OBdata.RData")
 
 Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
