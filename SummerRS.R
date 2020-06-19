@@ -13,19 +13,6 @@ library(scales)
 
 load(file="data/RSdata.RData")
 
-## Climatology of Remote Sensing Data
-clim_rs=rowMeans(data_rs,na.rm=TRUE)
-
-### Plot climatology with NaN
-
-Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
-Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
-
-
-## Standard Deviation of Remote Sensing Data
-
-sd_rs=rowSds(data_rs,na.rm=TRUE)
-
 
 ## Figure 4. Remote sensing derived sea surface pCO2 in summer over the period of 2000-2017.
 
@@ -39,6 +26,9 @@ ngrid = 1040 #number of grid boxes
 ntime = t2-(t1-1) #15 years
 
 years_rs <- seq(t1, t2, length=ntime)
+
+Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
+Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
 
 ### set up an empty frame, then add points one by one
 par(bg = "white") # ensure the background color is white
