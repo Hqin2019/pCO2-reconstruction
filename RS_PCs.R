@@ -42,6 +42,9 @@ u00=svd00$u
 v00=svd00$v
 d00=svd00$d
 
+var=d00^2/ntime
+cvar=cumsum(var)
+
 ## Figure 6(d). PCs of the remote sensing derived pCO2 data
 ### Plot PCs
 plot.new()

@@ -17,7 +17,10 @@ load(file="data/RSdata.RData")
 ## Climatology of Remote Sensing Data
 clim_rs=rowMeans(data_rs,na.rm=TRUE)
 
-
+t1 = 2000
+t2 = 2014
+ngrid = 1040 #number of grid boxes 
+ntime = t2-(t1-1) #15 years
 Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
 Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
 
