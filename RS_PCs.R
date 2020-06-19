@@ -10,7 +10,6 @@ library(scales)
 
 ## load remote sensing data from 2000 to 2014: Summer
 load(file="data/RSdata.RData")
-load(file="data/UNAN.RData")
 
 t1 = 2000
 t2 = 2014
@@ -43,19 +42,7 @@ u00=svd00$u
 v00=svd00$v
 d00=svd00$d
 
-UNaN=matrix(0,nrow=1040, ncol=ntime)
-UNaN[mar2,]=NaN #mar2 is the NaN rows
-
-for(i in 1:897){
-  for (j in 1: ntime ){
-    UNaN[mar3[i],j] = u00[i,j] #mar3 is the value rows
-  }
-}
-
 ## Figure 6(d). PCs of the remote sensing derived pCO2 data
-var=d00^2/ntime
-cvar=cumsum(var)
-
 ### Plot PCs
 plot.new()
 par(new = "TRUE",las = 1,cex.axis = 1)

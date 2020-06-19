@@ -10,7 +10,7 @@ library(scales)
 ## load remote sensing data and observed data.
 load(file="data/RSdata.RData")
 load(file="data/OBdata.RData")
-load(file="data/UNAN.RData")
+load(file="data/UNaN.RData")
 
 ## Climatology of Remote Sensing Data
 clim_rs=rowMeans(data_rs,na.rm=TRUE)
@@ -32,6 +32,7 @@ Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
 Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
 labels <- c("(a)","(b)","(c)","(d)","(e)","(f)","(g)","(h)","(i)","(j)","(k)","(l)","(m)","(n)","(o)")
 years_rs <- seq(t1, t2, length=ntime)
+years_obs = c(2000,2001,2004:2009,2012,2014:2017)
 
 ## Compute EOFs: The EOF patterns show important spatial patterns of pCO2
 clim_rs_std = ( data_rs - clim_rs) / sd_rs #Compute the standardized anomalies
@@ -52,46 +53,36 @@ d00=svd00$d
 
 ##  Write the EOF data with header
 eofnames=1:ntime
-
 for (i in 1:ntime){
   eofnames[i]=paste("EOF",i, sep="")
 }
-
 EOFs=u00
 colnames(EOFs) <- eofnames
-
-years_obs = c(2000,2001,2004:2009,2012,2014:2017)
 
 # Reconstruction
 ## Compute the standardized anomalies of the observed data with RS climatology and standard deviation
 
 data_obs_anom = (data_obs1 - clim_rs) / sd_rs
-
 data_ocean = data_obs_anom[mar3,]#data over the ocean only
-
 n_ocean = length(mar3) #mar3 are the row numbers of remote sensing data over ocean: 897 boxes 
 n_ocean 
 #[1] 897
 
 ### We intend to reconstruct the data on the 897 ocean boxes
-
 ### Determine the max number of modes that can be used and is equal to the 
 ### number of observed data boxes minus one: k1
 
 n_mode=c()
-
 for (i in 1:13) {
   v=which(complete.cases(data_ocean[,i])) #the boxes with data
   n_mode[i]=length(v)-1 
 }
 n_mode
 
-
 k1 = min(n_mode) 
 k2 = 8 #set the number of modes to be 8 except the first year
 
 #Generate the lm formula 
-
 recon=matrix(0,nrow=n_ocean,ncol=13)
 dim(recon)
 #[1] 897   13 #To hold the recon result
@@ -129,7 +120,6 @@ dim(reconfield_smr)
 summary(recon)
 
 ## Smooth results in reconfield summer
-
 for(i in 2:896){
   for( j in 1:13){
     if (reconfield_smr[i, j] > 480) 
@@ -140,7 +130,6 @@ for(i in 2:896){
 }
 
 ## Figure 7. Reconstructed pCO2 fields in the SCS. 
-
 n = 13  #13 recon summer pCO2s
 idn = 1040
 nt = idn*n

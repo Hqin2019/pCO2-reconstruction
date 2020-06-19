@@ -7,53 +7,12 @@ library(ggplot2)
 library(readxl)
 library(scales)
 
-# Summer pCO2 data analysis for remote sensing data 2000-2014
+#load EOFs data.
+load(file="data/UNaN.RData")
 
-## load remote sensing data from 2000 to 2014: summer and NaN values
-load(file="data/RSdata.RData")
-load(file="data/UNAN.RData")
-
-t1 = 2000
-t2 = 2014
-ngrid = 1040 #number of grid boxes 
-ntime = t2-(t1-1) #15 years
 Lat=seq(5.25, 24.75, len=40) #0.5-by-0.5 deg resolution
 Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
 
-## Climatology of Remote Sensing Data
-clim_rs=rowMeans(data_rs,na.rm=TRUE)
-
-## Standard Deviation of Remote Sensing Data
-sd_rs=rowSds(data_rs,na.rm=TRUE)
-
-
-
-## Compute EOFs: The EOF patterns show important spatial patterns of pCO2
-clim_rs_std = ( data_rs - clim_rs) / sd_rs #Compute the standardized anomalies
-dim(clim_rs_std)
-#[1] 1040   15 #all the 1040 grid boxes
-
-clim_rs_std_val = na.omit(clim_rs_std) #only the value boxes
-dim(clim_rs_std_val)
-#[1] 897   15  #897 of data rows, 15 clumons from 2000 to 2014
-#897 + 143 = 1040 rows total = 40X26 
-
-
-### EOF matrices with NaN for map plotting.
-svd00=svd(clim_rs_std_val) #SVD for the matrix w/o NaN
-#SVD does not work for a matrix with NaN
-u00=svd00$u
-v00=svd00$v
-d00=svd00$d
-
-UNaN=matrix(0,nrow=1040, ncol=ntime)
-UNaN[mar2,]=NaN #mar2 is the NaN rows
-
-for(i in 1:897){
-  for (j in 1: ntime ){
-    UNaN[mar3[i],j] = u00[i,j] #mar3 is the value rows
-  }
-}
 
 ## Figure 6(a)(b)(c). EOFs of the remote sensing derived pCO2 data
 
