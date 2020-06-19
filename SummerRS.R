@@ -17,6 +17,15 @@ load(file="data/data_rs.RData")
 
 ### Remove the available values at the same observation point if there is NaN  
 
+t1 = 2000
+t2 = 2014
+ngrid = 1040 #number of grid boxes 
+ntime = t2-(t1-1) #15 years
+rsname=1: ntime
+for (i in 1: ntime){
+  rsname[i] = paste("pCO2_rs_summer", 1999+i, ".txt", sep="")
+}
+
 for (i in 1:ntime) {
   n = which(data_rs[ ,i] == "NaN")
   data_rs[n,] <- NA
