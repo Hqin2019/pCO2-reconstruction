@@ -20,7 +20,7 @@ load(file="data/RSdata.RData")
 load(file="data/OBdata.RData")
 
 ## load Summer sea surface pCO2 at Station HOT
-load(file="data/reconsmr.RData")
+load(file="data/HOT.RData")
 
 ##load some middle values data to help run all source at once
 load(file="data/UNaN.RData")
