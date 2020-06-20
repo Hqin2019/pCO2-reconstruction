@@ -2,15 +2,19 @@
 ## Descrption of the repository
 This repo contains replication codes for graphs and other supplementary documentation for Wang et al. 
 
-The data is avaliable to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
-
-
 These files are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 A copy of the GNU General Public License is available at http://www.gnu.org/licenses/.
 
 ## Data and data treatment
-Underway sea surface pCO2 data from 35 cruises ranging from 2000-2017 were compiled in this study. Observed sea surface pCO2 in the SCS is mainly distributed on the northern shelf and in the northern basin. Since monthly data are hardly available for each year starting from 2000, we have compiled the data seasonally in which the spring season includes March-May, the summer season is June-August, the fall season is September-November, and the winter season includes December and the next January and February.
+This repository includes two datasets in the `data` folder: `RSdata.csv` and `OBdata.csv`. They are the input data for the R codes for the paper of Wang et al. (2020). 
+
+The file `OBdata.csv` contains the in situ summer sea surface pCO2 data from 2000 to 2017 in scattered 0.5º×0.5º grid boxes in the (5-25º N, 109-122º E) region that covers most of the South China Sea. The summer data are the June-August mean for each year in 2000-2017 excluding 2002, 2003, 2010, 2011 and 2013. Thus, the observed in situ pCO2 data are for 13 summers in 2000-2017. 
+
+The dataset `RSdata.csv` is the satellite remote-sensing derived sea surface pCO2 for the summers of 2000-2014, also gridded with a 0.5º×0.5º resolution in the (5-25º N, 109-122º E) region.
+
+The original annual data is avaliable to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
+
 
 ## Contents for R codes
 Each R code can be run individully. The code `pCO2_analysis_figures.R` produces all analysis and figures.
