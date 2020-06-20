@@ -29,7 +29,7 @@ Each R code can be run individully. The code `pCO2_analysis_figures.R` produces 
 
 ## Results tables
 The `tables` folder contains the reconstructed results, EOFs, and the data for each figure in the paper. 
--The 'Variance.csv' is for Figure 5.
--The 'PCs.csv' and EOFs are for Figure 6.
--The 'reconstructed_results.csv` is a complete results for the reconstruction implementation.
+- The `Variance.csv` is for Figure 5.
+- The `PCs.csv` and EOFs are for Figure 6.
+- The `reconstructed_results.csv` is a complete results for the reconstruction implementation.
 
