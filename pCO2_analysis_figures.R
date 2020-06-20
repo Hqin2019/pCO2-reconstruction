@@ -1,4 +1,4 @@
-# Guizhi Wang data
+# Guizhi Wang data XMU
 # 2019-10-19
 
 # Codes for figures
