@@ -1,6 +1,6 @@
 # Feasibility of reconstructing the basin-scale sea surface partial pressure of carbon dioxide from sparse in situ observations over the South China Sea
 ## Descrption of the repository
-This repo contains replication codes for graphs and other supplementary documentation for Wang et al (2020). 
+This repo contains replication codes for graphs and other supplementary documentation for Wang et al. (2020). 
 
 These files are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -13,7 +13,7 @@ The file `OBdata.csv` contains the in situ summer sea surface pCO2 data from 200
 
 The dataset `RSdata.csv` is the satellite remote-sensing derived sea surface pCO2 for the summers of 2000-2014, also gridded with a 0.5º×0.5º resolution in the (5-25º N, 109-122º E) region.
 
-The original annual data is avaliable to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
+The original datasets are avaliable to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
 
 
 ## Contents for R codes
