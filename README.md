@@ -31,6 +31,6 @@ Each R code can be run individully. The code `pCO2_analysis_figures.R` produces 
 The `tables` folder contains the reconstructed results, EOFs, and the data for each figure in the paper. 
 - The `Variance.csv` is for Figure 5.
 - The `PCs.csv` and `EOFs_UNan.csv` are for Figure 6.
-- The `EOFs_u00` contains EOFs for SOG regression.
+- The `EOFs_u00` contains the EOF data for SOG regression.
 - The `reconstructed_results.csv` is a complete results for the reconstruction implementation.
 
