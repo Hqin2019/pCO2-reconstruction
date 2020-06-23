@@ -15,6 +15,8 @@ The dataset `RSdata.csv` is the satellite remote-sensing derived sea surface pCO
 
 The original datasets are avaliable to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
 
+Data DOI: 10.12041/geodata.265475166473763.ver1.db
+
 
 ## Contents for R codes
 Each R code can be run individully. The code `pCO2_analysis_figures.R` produces all analysis and figures.
