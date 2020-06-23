@@ -33,7 +33,7 @@ Lon=seq(109.25,121.75,len=26) #0.5-by-0.5 deg resolution
 ### set up an empty frame, then add points one by one
 par(bg = "white") # ensure the background color is white
 ani.record(reset = TRUE) # clear history before recording
-
+plot.new()
 for(i in 1:ntime) {
   mapmat=matrix(data_rs[,i],nrow=26)
   #mapmat=pmax(pmin(mapmat,450,na.rm=TRUE),250, na.rm=TRUE)

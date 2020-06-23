@@ -139,6 +139,7 @@ reconmat[mar3,] = reconfield_smr
 ### set up an empty frame, then add points one by one
 par(bg = "white") # ensure the background color is white
 ani.record(reset = TRUE) # clear history before recording
+plot.new()
 for (i in 1:n) {
   mapmat=matrix(reconmat[,i],nrow=26)
   mapmat=pmax(pmin(mapmat,480),220)
