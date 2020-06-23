@@ -20,6 +20,7 @@ labels <- c("(a)","(b)","(c)","(d)","(e)","(f)","(g)","(h)","(i)","(j)","(k)","(
 years_obs = c(2000,2001,2004:2009,2012,2014:2017)
 
 ## set up an empty frame, then add points one by one
+plot.new()
 par(bg = "white") # ensure the background color is white
 ani.record(reset = TRUE) # clear history before recording
 
