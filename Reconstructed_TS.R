@@ -6,6 +6,7 @@ library(reshape2)
 library(ggplot2)
 library(readxl)
 library(scales)
+library(dplyr)
 
 #Load reconstruction results.
 load(file="data/reconsmr.RData")
