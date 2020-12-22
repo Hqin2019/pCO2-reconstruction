@@ -27,6 +27,7 @@ Each R code can be run individully. The code `pCO2_analysis_figures.R` produces 
 - The code `RS_PCs.R` replicates Figure 6(d).
 - The code `Reconstrcuted_pCO2.R` replicates the reconstruction implementation and Figure 7 in the paper.
 - The code `Reconstructed_TS.R` replicates Figure 8.
+- The code `CrossValidation.R` performs leave-one-out cross-validation to each year's reconstruction. The corresponding rmse values are obtained.
 
 
 ## Results tables
