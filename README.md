@@ -36,4 +36,5 @@ The `tables` folder contains the reconstructed results, EOFs, and the data for e
 - The `PCs.csv` and `EOFs_UNan.csv` are for Figure 6.
 - The `EOFs_u00` contains the EOF data for SOG regression.
 - The `reconstructed_results.csv` is a complete results for the reconstruction implementation.
+- The `rmscv.csv` contains rmse results from the cross-validation.
 
