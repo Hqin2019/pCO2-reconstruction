@@ -6,6 +6,14 @@ These files are free software: you can redistribute them and/or modify them unde
 
 A copy of the GNU General Public License is available at http://www.gnu.org/licenses/.
 
+The Github repository has been released with a DOI 10.5281/zenodo.4536580
+The current link to this release is https://doi.org/10.5281/zenodo.4536580
+
+Please cite this repository by
+
+Wang, Guizhi, Shen, S.P. Samuel, Chen, Yao, & Qin, Huan. (2021, February 12). Hqin2019/pCO2-reconstruction: pco2 reconstruction study code repository (Version v1.0.1). Zenodo. http://doi.org/10.5281/zenodo.4536580
+
+
 ## Data and data treatment
 This repository includes two datasets in the `data` folder: `RSdata.csv` and `OBdata.csv`. They are the input data for the R codes for the paper of Wang et al. (2020). 
 
