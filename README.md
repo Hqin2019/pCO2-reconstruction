@@ -30,18 +30,18 @@ Data DOI: 10.12041/geodata.265475166473763.ver1.db
 Each R code can be run individully. The code `pCO2_analysis_figures.R` produces all analysis and figures.
 - The code `SummerOB.R` replicates Figure 3.
 - The code `SummerRS.R` replicates Figure 4.
-- The code `ModeNumber.R` replicates Figure 5.
-- The code `SummerRSEOFs.R` plots EOF1, EOF2, EOF3 and replicates Figure 6(a)(b)(c).
-- The code `RS_PCs.R` replicates Figure 6(d).
-- The code `Reconstrcuted_pCO2.R` replicates the reconstruction implementation and Figure 7 in the paper.
-- The code `Reconstructed_TS.R` replicates Figure 8.
+- The code `ModeNumber.R` replicates Figure 6.
+- The code `SummerRSEOFs.R` plots EOF1, EOF2, EOF3 and replicates Figure 7(a)(b)(c).
+- The code `RS_PCs.R` replicates Figure 7(d).
+- The code `Reconstrcuted_pCO2.R` replicates the reconstruction implementation and Figure 8 in the paper.
+- The code `Reconstructed_TS.R` replicates Figure 11.
 - The code `CrossValidation.R` performs leave-one-out cross-validation to each year's reconstruction. The corresponding rmse values are obtained.
 
 
 ## Results tables
 The `tables` folder contains the reconstructed results, EOFs, and the data for each figure in the paper. 
-- The `Variance.csv` is for Figure 5.
-- The `PCs.csv` and `EOFs_UNan.csv` are for Figure 6.
+- The `Variance.csv` is for Figure 6.
+- The `PCs.csv` and `EOFs_UNan.csv` are for Figure 7.
 - The `EOFs_u00` contains the EOF data for SOG regression.
 - The `reconstructed_results.csv` is a complete results for the reconstruction implementation.
 - The `rmscv.csv` contains rmse results from the cross-validation.
