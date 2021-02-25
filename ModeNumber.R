@@ -61,8 +61,7 @@ var=d00^2/ntime
 cvar=cumsum(var)
 
 
-setEPS()
-postscript("fig06.eps",width=7, heigh=5)
+
 par(mar=c(4,4.5,0.5,4.5))
 plot(1:ntime,100*var/cvar[ntime], type='o',lwd=2.5,col='red', 
      xlab="", ylab="",cex.axis=1.5, cex.lab=1.5)
@@ -75,4 +74,3 @@ plot(1:ntime, 100*cvar/cvar[ntime],type="o",col="blue",
      lwd=2.5,axes=FALSE,xlab="",ylab="", cex.axis=1.5)
 axis(4, col="blue", col.ticks="blue", col.axis="blue", cex.axis=1.5)
 mtext("Cumulative Variance [%]",side=4,line=3, cex=1.5, col="blue")
-dev.off()
