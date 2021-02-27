@@ -6,13 +6,13 @@ These files are free software: you can redistribute them and/or modify them unde
 
 A copy of the GNU General Public License is available at http://www.gnu.org/licenses/.
 
-The Github repository has been released with a DOI 10.5281/zenodo.4536580
-The current link to this release is https://doi.org/10.5281/zenodo.4536580
+The Github repository has been released with a DOI 10.5281/zenodo.4567859.
+
+The current link to this release is https://doi.org/10.5281/zenodo.4567859.
 
 Please cite this repository by
 
-Wang, Guizhi, Shen, S.P. Samuel, Chen, Yao, & Qin, Huan. (2021, February 12). Hqin2019/pCO2-reconstruction: pco2 reconstruction study code repository (Version v1.0.1). Zenodo. http://doi.org/10.5281/zenodo.4536580
-
+Wang, Guizhi, Shen, S.P. Samuel, Chen, Yao, & Qin, Huan. (27 February 2021). Hqin2019/pCO2-reconstruction: pCO2-reconstruction (Version v1.0.2). Zenodo. http://doi.org/10.5281/zenodo.4567859
 
 ## Data and data treatment
 This repository includes two datasets in the `data` folder: `RSdata.csv` and `OBdata.csv`. They are the input data for the R codes for the paper of Wang et al. (2020). 
@@ -39,10 +39,12 @@ Each R code can be run individully. The code `pCO2_analysis_figures.R` produces 
 
 
 ## Results tables
-The `tables` folder contains the reconstructed results, EOFs, and the data for each figure in the paper. 
+The `tables` folder contains the reconstruction results, EOFs, and the data for each figure in the paper. 
 - The `Variance.csv` is for Figure 6.
 - The `PCs.csv` and `EOFs_UNan.csv` are for Figure 7.
 - The `EOFs_u00` contains the EOF data for SOG regression.
 - The `reconstructed_results.csv` is a complete results for the reconstruction implementation.
 - The `rmscv.csv` contains rmse results from the cross-validation.
 
+## Animations
+The folder `animation` contains animation videos for the in situ data, remote-sensing data, and the reconstruction results.
