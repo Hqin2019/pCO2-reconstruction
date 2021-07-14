@@ -1,5 +1,5 @@
 # Feasibility of reconstructing the basin-scale sea surface partial pressure of carbon dioxide from sparse in situ observations over the South China Sea
-## Descrption of the repository
+## Description of the repository
 This repo contains replication codes for graphs and other supplementary documentation for Wang et al. (2020). 
 
 These files are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -19,15 +19,15 @@ This repository includes two datasets in the `data` folder: `RSdata.csv` and `OB
 
 The file `OBdata.csv` contains the in situ summer sea surface pCO2 data from 2000 to 2017 in scattered 0.5º×0.5º grid boxes in the (5-25º N, 109-122º E) region that covers most of the South China Sea. The summer data are the June-August mean for each year in 2000-2017 excluding 2002, 2003, 2010, 2011 and 2013. Thus, the observed in situ pCO2 data are for 13 summers in 2000-2017. 
 
-The dataset `RSdata.csv` is the satellite remote-sensing derived sea surface pCO2 for the summers of 2000-2014, also gridded with a 0.5º×0.5º resolution in the (5-25º N, 109-122º E) region.
+The dataset `RSdata.csv` is the satellite remote-sensing derived sea surface pCO2 for the summers of 2000-2014, also girded with a 0.5º×0.5º resolution in the (5-25º N, 109-122º E) region.
 
-The original datasets are avaliable to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
+The original datasets are available to download from XMU's library at https://dspace.xmu.edu.cn/handle/2288/174342.
 
 Data DOI: 10.12041/geodata.265475166473763.ver1.db
 
 
 ## Contents for R codes
-Each R code can be run individully. The code `pCO2_analysis_figures.R` produces all analysis and figures.
+Each R code can be run individually. The code `pCO2_analysis_figures.R` produces all analysis and figures.
 - The code `SummerOB.R` replicates Figure 3.
 - The code `SummerRS.R` replicates Figure 4.
 - The code `ModeNumber.R` replicates Figure 6.
